@@ -226,7 +226,7 @@ func buildLVMCreateArgs(vol *apis.LVMVolume) []string {
 			LVMVolArg = append(LVMVolArg, "-L", size)
 
 			// create lv type stripe as default
-			LVMVolArg = append(LVMVolArg, "-i 2")
+			LVMVolArg = append(LVMVolArg, "-i 1")
 
 		} else if !lvThinExists(vol.Spec.VolGroup, pool) {
 			// thinpool size can't be equal or greater than actual volumegroup size
