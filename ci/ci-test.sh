@@ -17,10 +17,12 @@
 set -e
 
 # setup the lvm volume group to create the volume
-truncate -s 1024G /tmp/disk.img
-disk=`sudo losetup -f /tmp/disk.img --show`
-sudo pvcreate "$disk"
-sudo vgcreate lvmvg "$disk"
+truncate -s 10G /tmp/disk-01.img
+truncate -s 10G /tmp/disk-02.img
+disk01=`sudo losetup -f /tmp/disk-01.img --show`
+disk02=`sudo losetup -f /tmp/disk-02.img --show`
+sudo pvcreate "$disk01" "$disk02"
+sudo vgcreate lvmvg "$disk01" "$disk02"
 
 # install snapshot and thin volume module for lvm
 sudo modprobe dm-snapshot
