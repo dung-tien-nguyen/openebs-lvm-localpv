@@ -24,12 +24,11 @@ VETARGS?=-asmdecl -atomic -bool -buildtags -copylocks -methods \
 # Tools required for different make
 # targets or for development purposes
 EXTERNAL_TOOLS=\
-	golang.org/x/tools/cmd/cover \
-	golang.org/x/lint/golint \
-	github.com/axw/gocov/gocov \
-	gopkg.in/matm/v1/gocov-html \
-	github.com/onsi/ginkgo/ginkgo \
-	github.com/onsi/gomega/...
+	golang.org/x/tools/cmd/cover@latest \
+	golang.org/x/lint/golint@latest \
+	github.com/axw/gocov/gocov@latest \
+	gopkg.in/matm/v1/gocov-html@latest \
+	github.com/onsi/ginkgo/ginkgo@latest
 
 # The images can be pushed to any docker/image registeries
 # like docker hub, quay. The registries are specified in
@@ -136,7 +135,7 @@ vendor: go.mod go.sum deps
 bootstrap: controller-gen install-golangci-lint
 	@for tool in  $(EXTERNAL_TOOLS) ; do \
 		echo "+ Installing $$tool" ; \
-		cd && GO111MODULE=on go get $$tool; \
+		cd && GO111MODULE=on go install $$tool; \
 	done
 
 ## golangci-lint tool used to check linting tools in codebase
@@ -151,7 +150,7 @@ install-golangci-lint:
 
 .PHONY: controller-gen
 controller-gen:
-	TMP_DIR=$(shell mktemp -d) && cd $$TMP_DIR && go mod init tmp && go get sigs.k8s.io/controller-tools/cmd/controller-gen@v0.4.0 && rm -rf $$TMP_DIR;
+	TMP_DIR=$(shell mktemp -d) && cd $$TMP_DIR && go mod init tmp && go install sigs.k8s.io/controller-tools/cmd/controller-gen@v0.4.0 && rm -rf $$TMP_DIR;
 
 # SRC_PKG is the path of code files
 SRC_PKG := github.com/openebs/lvm-localpv/pkg
