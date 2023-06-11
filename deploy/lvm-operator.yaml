@@ -1423,7 +1423,7 @@ spec:
       hostNetwork: true
       containers:
         - name: csi-node-driver-registrar
-          image: registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.3.0
+          image: registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.7.0
           imagePullPolicy: IfNotPresent
           args:
             - "--v=5"

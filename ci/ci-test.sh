@@ -25,7 +25,7 @@ sudo pvcreate "$disk01" "$disk02"
 sudo vgcreate lvmvg "$disk01" "$disk02"
 
 # install snapshot and thin volume module for lvm
-sudo modprobe dm-snapshot
+sudo modprobe dm_snapshot
 sudo modprobe dm_thin_pool
 
 
@@ -89,6 +89,11 @@ waitForLVMDriver() {
   echo "Waited for $period seconds, but all pods are not ready yet."
   return 1
 }
+
+# echo get pod
+echo "################### Dungnt list all pod "###################"
+kubectl get pod -A
+echo "################### Dungnt list all pod "###################"
 
 # wait for lvm-driver to be up
 waitForLVMDriver
