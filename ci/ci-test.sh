@@ -84,7 +84,7 @@ waitForLVMDriver() {
     echo "################### Dungnt list all pod ###################"
     kubectl get pod -A --show-labels
     kubectl -n kube-system describe pod openebs-lvm-controller-0
-    kubectl -n kube-system logs pod openebs-lvm-controller-0 -c openebs-lvm-plugin
+    kubectl -n kube-system logs openebs-lvm-controller-0 -c openebs-lvm-plugin
     echo "################### Dungnt list all pod ###################"
     i=$(( i + interval ))
     echo "Waiting for lvm-driver to be ready..."
