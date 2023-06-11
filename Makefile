@@ -102,7 +102,7 @@ clean:
 	rm -rf ${GOPATH}/pkg/*
 
 .PHONY: format
-format: vendor
+format:
 	@echo "--> Running go fmt"
 	@go fmt $(PACKAGES)
 
@@ -135,7 +135,7 @@ vendor: go.mod go.sum deps
 bootstrap: controller-gen install-golangci-lint
 	@for tool in  $(EXTERNAL_TOOLS) ; do \
 		echo "+ Installing $$tool" ; \
-		cd && GO111MODULE=off go install $$tool; \
+		cd && GO111MODULE=on go install $$tool; \
 	done
 
 ## golangci-lint tool used to check linting tools in codebase
