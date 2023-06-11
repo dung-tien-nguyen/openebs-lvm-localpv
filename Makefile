@@ -276,7 +276,7 @@ deploy-e2e-images:
 .PHONY: golint
 golint:
 	@echo "--> Running golint"
-	golangci-lint run -E exportloopref,dupl,revive,bodyclose,goconst,misspell -D structcheck --timeout 5m0s
+	golangci-lint run -E exportloopref,dupl,revive,bodyclose,goconst,misspell -D structcheck --timeout 5m0s --modules-download-mode vendor
 	@echo "Completed golangci-lint no recommendations !!"
 	@echo "--------------------------------"
 	@echo ""
