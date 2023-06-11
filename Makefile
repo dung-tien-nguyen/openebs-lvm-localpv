@@ -275,6 +275,8 @@ deploy-e2e-images:
 ##       for more information look at https://github.com/golangci/golangci-lint/issues/537
 .PHONY: golint
 golint:
+	@echo "--> sync go.mod and vendor package"
+	go mod vendor
 	@echo "--> Running golint"
 	golangci-lint run -E exportloopref,dupl,revive,bodyclose,goconst,misspell -D structcheck --timeout 5m0s
 	@echo "Completed golangci-lint no recommendations !!"
