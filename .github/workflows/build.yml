@@ -18,7 +18,7 @@ on:
   push:
     branches:
       - 'develop'
-      - 'dungnt*'
+      - 'dungnt/**'
     paths-ignore:
       - '*.md'
       - 'BUILDMETA'
