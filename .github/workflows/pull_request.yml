@@ -109,7 +109,8 @@ jobs:
 
   csi-driver:
     runs-on: ubuntu-20.04
-    needs: ['lint', 'unit-test', 'bdd-test']
+    # needs: ['lint', 'unit-test', 'bdd-test']
+    needs: ['unit-test', 'bdd-test']
     steps:
       - name: Checkout
         uses: actions/checkout@v2

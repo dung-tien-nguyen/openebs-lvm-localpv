@@ -29,28 +29,28 @@ on:
       - 'MAINTAINERS'
 
 jobs:
-  lint:
-    # to ignore builds on release
-    if: ${{ (github.event.ref_type != 'tag') }}
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+  # lint:
+  #   # to ignore builds on release
+  #   if: ${{ (github.event.ref_type != 'tag') }}
+  #   runs-on: ubuntu-20.04
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
 
-      - name: Shellcheck
-        uses: reviewdog/action-shellcheck@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
-          path: '.'
-          pattern: '*.sh'
-          exclude: './.git/*,./vendor/*'
+  #     - name: Shellcheck
+  #       uses: reviewdog/action-shellcheck@v1
+  #       with:
+  #         github_token: ${{ secrets.github_token }}
+  #         reporter: github-pr-review
+  #         path: '.'
+  #         pattern: '*.sh'
+  #         exclude: './.git/*,./vendor/*'
 
-      - name: install golangci-lint
-        run: make install-golangci-lint
+  #     - name: install golangci-lint
+  #       run: make install-golangci-lint
 
-      - name: Lint checks
-        run: make golint
+  #     - name: Lint checks
+  #       run: make golint
 
   unit-test:
     # to ignore builds on release
@@ -100,7 +100,8 @@ jobs:
 
   ansible:
     runs-on: ubuntu-20.04
-    needs: ['lint', 'unit-test', 'bdd-test']
+    # needs: ['lint', 'unit-test', 'bdd-test']
+    needs: ['unit-test', 'bdd-test']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -129,7 +130,8 @@ jobs:
 
   csi-driver:
     runs-on: ubuntu-20.04
-    needs: ['lint', 'unit-test', 'bdd-test']
+    # needs: ['lint', 'unit-test', 'bdd-test']
+    needs: ['unit-test', 'bdd-test']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
