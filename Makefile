@@ -102,7 +102,7 @@ clean:
 	rm -rf ${GOPATH}/pkg/*
 
 .PHONY: format
-format:
+format: vendor
 	@echo "--> Running go fmt"
 	@go fmt $(PACKAGES)
 
@@ -274,9 +274,7 @@ deploy-e2e-images:
 ## NOTE: Disabling structcheck since it is reporting false positive cases
 ##       for more information look at https://github.com/golangci/golangci-lint/issues/537
 .PHONY: golint
-golint:
-	@echo "--> sync go.mod and vendor package"
-	go mod vendor
+golint: vendor
 	@echo "--> Running golint"
 	golangci-lint run -E exportloopref,dupl,revive,bodyclose,goconst,misspell -D structcheck --timeout 5m0s
 	@echo "Completed golangci-lint no recommendations !!"
