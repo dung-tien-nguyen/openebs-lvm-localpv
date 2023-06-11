@@ -135,7 +135,7 @@ vendor: go.mod go.sum deps
 bootstrap: controller-gen install-golangci-lint
 	@for tool in  $(EXTERNAL_TOOLS) ; do \
 		echo "+ Installing $$tool" ; \
-		cd && GO111MODULE=on go install $$tool; \
+		cd && GO111MODULE=off go install $$tool; \
 	done
 
 ## golangci-lint tool used to check linting tools in codebase
@@ -276,7 +276,7 @@ deploy-e2e-images:
 .PHONY: golint
 golint:
 	@echo "--> Running golint"
-	golangci-lint run -E exportloopref,dupl,revive,bodyclose,goconst,misspell -D structcheck --timeout 5m0s --modules-download-mode vendor
+	golangci-lint run -E exportloopref,dupl,revive,bodyclose,goconst,misspell -D structcheck --timeout 5m0s
 	@echo "Completed golangci-lint no recommendations !!"
 	@echo "--------------------------------"
 	@echo ""
