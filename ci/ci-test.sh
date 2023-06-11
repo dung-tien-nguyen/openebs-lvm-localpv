@@ -72,7 +72,7 @@ isDriverReady(){
 
 waitForLVMDriver() {
   period=120
-  interval=1
+  interval=2
 
   i=0
   while [ "$i" -le "$period" ]; do
@@ -80,7 +80,10 @@ waitForLVMDriver() {
     if isDriverReady "$lvmDriver"; then
       return 0
     fi
-
+    # echo get pod
+    echo "################### Dungnt list all pod ###################"
+    kubectl get pod -A --show-labels
+    echo "################### Dungnt list all pod ###################"
     i=$(( i + interval ))
     echo "Waiting for lvm-driver to be ready..."
     sleep "$interval"
@@ -90,10 +93,7 @@ waitForLVMDriver() {
   return 1
 }
 
-# echo get pod
-echo "################### Dungnt list all pod ###################"
-kubectl get pod -A
-echo "################### Dungnt list all pod ###################"
+
 
 # wait for lvm-driver to be up
 waitForLVMDriver
