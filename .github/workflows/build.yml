@@ -18,12 +18,12 @@ on:
   push:
     branches:
       - 'develop'
-      - 'v*'
+      - 'dungnt*'
     paths-ignore:
       - '*.md'
       - 'BUILDMETA'
       - 'changelogs/**'
-      - 'deploy/helm/**'
+      # - 'deploy/helm/**'
       - 'docs/**'
       - 'LICENSE'
       - 'MAINTAINERS'
