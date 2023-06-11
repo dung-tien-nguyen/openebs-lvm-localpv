@@ -91,9 +91,9 @@ waitForLVMDriver() {
 }
 
 # echo get pod
-echo "################### Dungnt list all pod "###################"
+echo "################### Dungnt list all pod ###################"
 kubectl get pod -A
-echo "################### Dungnt list all pod "###################"
+echo "################### Dungnt list all pod ###################"
 
 # wait for lvm-driver to be up
 waitForLVMDriver
